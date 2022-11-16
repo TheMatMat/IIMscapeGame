@@ -15,3 +15,20 @@ MonoBehaviour:
   mapWidth: 10
   mapHeight: 10
   mapName: MAP_1
+  horizontalDangerousWalls:
+  - index: 4
+    isVisible: 1
+    isDangerous: 1
+  - index: 8
+    isVisible: 1
+    isDangerous: 1
+  - index: 15
+    isVisible: 1
+    isDangerous: 1
+  - index: 18
+    isVisible: 1
+    isDangerous: 1
+  - index: 35
+    isVisible: 1
+    isDangerous: 1
+  VerticalDangerousWalls: []

@@ -38,10 +38,11 @@ public class Board : MonoBehaviour
                 tiles.Add(newTile);
         }
 
-        PlaceTiles();
+        PlaceTilesAndWalls();
+        ActivateDangerousWalls();
     }
 
-    public void PlaceTiles()
+    public void PlaceTilesAndWalls()
     {
         int index = 0;
         float originXTilePos = - BS.mapWidth / 2;
@@ -105,7 +106,7 @@ public class Board : MonoBehaviour
                 //place horizontal walls
                 if(i != BS.mapHeight - 1)
                 {
-                    Wall newWall = currentTile.PlaceWalls(DIRECTION.BOTTOM, false, false);
+                    Wall newWall = currentTile.PlaceWalls(DIRECTION.BOTTOM, WALL_TYPE.HORIZONTAL, false, false);
                     walls.Add(newWall);
                     horizontalWalls.Add(newWall);
                 }
@@ -113,13 +114,10 @@ public class Board : MonoBehaviour
                 //place vertical walls
                 if(j != BS.mapWidth - 1)
                 {
-                    Wall newWall = currentTile.PlaceWalls(DIRECTION.RIGHT, false, false);
+                    Wall newWall = currentTile.PlaceWalls(DIRECTION.RIGHT, WALL_TYPE.VERTICAL, false, false);
                     walls.Add(newWall);
                     verticalWalls.Add(newWall);
                 }
-             
-
-                //tiles[index].PlaceSideWalls(true, true, true, true);
 
                 tilePos.x += tilePrefab.GetHeight();
                 
@@ -128,6 +126,21 @@ public class Board : MonoBehaviour
             tilePos.x = originXTilePos * tilePrefab.GetWidth();
 
             tilePos.y -= tilePrefab.GetWidth();
+        }
+    }
+
+    public void ActivateDangerousWalls()
+    {
+        foreach(WallState WS in BS.horizontalDangerousWalls)
+        {
+            if(WS.index < horizontalWalls.Count)
+                horizontalWalls[WS.index].SetAndApplyChanges(WS.isVisible, WS.isDangerous);
+        }
+
+        foreach (WallState WS in BS.VerticalDangerousWalls)
+        {
+            if (WS.index < verticalWalls.Count)
+                verticalWalls[WS.index].SetAndApplyChanges(WS.isVisible, WS.isDangerous);
         }
     }
 }
