@@ -2,15 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum WALL_TYPE
+{
+    OUTSIDE,
+    HORIZONTAL,
+    VERTICAL
+}
+
 public class Wall : MonoBehaviour
 {
+
+    public int wallIndex = 0;
+
     [SerializeField]
     private bool isVisible;
-    public bool IsVisible { get; set; }
+    public bool IsVisible { get;}
 
     [SerializeField]
     private bool isDangerous;
-    public bool IsDangerous { get; set; }
+    public bool IsDangerous { get;}
+
+    private SpriteRenderer sr;
+    private BoxCollider2D bc2D;
 
     // Start is called before the first frame update
     void Start()
@@ -18,24 +32,33 @@ public class Wall : MonoBehaviour
         
     }
 
-    public void ApplyChanges()
+    public void Init()
     {
+        sr = GetComponent<SpriteRenderer>();
+        bc2D = GetComponent<BoxCollider2D>();
+    }
+
+    public void SetAndApplyChanges(bool _isVisible, bool _isDangerous)
+    {
+        this.isVisible = _isVisible;
+        this.isDangerous = _isDangerous;
+
         if (!isVisible)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            sr.enabled = false;
         }
         else
         {
-            this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            sr.enabled = true;
         }
 
         if (!isDangerous)
         {
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            bc2D.enabled = false;
         }
         else
         {
-            this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            bc2D.enabled = true;
         }
     }
 

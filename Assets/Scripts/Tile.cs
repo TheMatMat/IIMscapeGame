@@ -48,32 +48,49 @@ public class Tile : MonoBehaviour
         return sr.size.y;
     }
 
-    public Wall PlaceWalls(DIRECTION dir, bool _isVisible = true, bool _isDangerous = true)
+    public Wall PlaceWalls(DIRECTION dir, WALL_TYPE wallType = WALL_TYPE.OUTSIDE, bool _isVisible = true, bool _isDangerous = true)
     {
-        Wall wall = new Wall();
+        Wall wall = null;
+        string parentPath = "Walls";
+
+        switch (wallType)
+        {
+            case WALL_TYPE.OUTSIDE:
+                parentPath = "Walls/OutsideWalls";
+                break;
+            case WALL_TYPE.HORIZONTAL:
+                parentPath = "Walls/HorizontalWalls";
+                break;
+            case WALL_TYPE.VERTICAL:
+                parentPath = "Walls/VerticalWalls";
+                break;
+            default:
+                parentPath = "Walls";
+                break;
+        }
 
         switch (dir)
         {
             case DIRECTION.TOP:
-                wall = Instantiate(wallHorizontalPrefab, this.transform.parent.Find("Walls").transform);
+                wall = Instantiate(wallHorizontalPrefab, this.transform.parent.Find(parentPath).transform);
                 wall.transform.position = (Vector2)this.transform.position + new Vector2(0, GetHeight() / 2);
                 break;
             case DIRECTION.RIGHT:
-                wall = Instantiate(wallVerticalPrefab, this.transform.parent.Find("Walls").transform);
+                wall = Instantiate(wallVerticalPrefab, this.transform.parent.Find(parentPath).transform);
                 wall.transform.position = (Vector2)this.transform.position + new Vector2(GetWidth() / 2, 0);
                 break;
             case DIRECTION.BOTTOM:
-                wall = Instantiate(wallHorizontalPrefab, this.transform.parent.Find("Walls").transform);
+                wall = Instantiate(wallHorizontalPrefab, this.transform.parent.Find(parentPath).transform);
                 wall.transform.position = (Vector2)this.transform.position - new Vector2(0, GetHeight() / 2);
                 break;
             case DIRECTION.LEFT:
-                wall = Instantiate(wallVerticalPrefab, this.transform.parent.Find("Walls").transform);
+                wall = Instantiate(wallVerticalPrefab, this.transform.parent.Find(parentPath).transform);
                 wall.transform.position = (Vector2)this.transform.position - new Vector2(GetWidth() / 2, 0);
                 break;
         }
 
-        wall.IsVisible = _isVisible;
-        wall.IsDangerous = _isDangerous;
+        wall.Init();
+        wall.SetAndApplyChanges(_isVisible, _isDangerous);
         return wall;
     }
 
