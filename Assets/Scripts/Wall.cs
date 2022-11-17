@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,6 +67,17 @@ public class Wall : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Activate()
+    {
+        if (!isVisible)
+        {
+            sr.enabled = true;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.2f);
+
+            sr.DOFade(1, 1.0f).SetEase(Ease.OutBounce).SetLoops(-1, LoopType.Yoyo);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

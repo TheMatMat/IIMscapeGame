@@ -150,10 +150,13 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void SpawnVehicule()
+    public void SpawnVehicule(GameObject currentVehicule = null)
     {
-        Vehicule vehicule = Instantiate(motoPrefab, tiles[22].transform.position, Quaternion.identity);
+        if(currentVehicule != null)
+            Destroy(currentVehicule);
+
+        Vehicule vehicule = Instantiate(motoPrefab, tiles[BS.entranceIndex].transform.position, Quaternion.identity);
         vehicule.currentBoard = this;
-        vehicule.currentTile = tiles[22];
+        vehicule.currentTile = tiles[16];
     }
 }

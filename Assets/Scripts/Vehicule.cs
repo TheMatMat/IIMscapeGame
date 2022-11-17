@@ -19,6 +19,7 @@ public class Vehicule : MonoBehaviour
     [Header("References")]
     public Board currentBoard;
     public Tile currentTile;
+    public GameObject explosion;
 
     [Header("Movement")]
     public bool isMoving = false;
@@ -121,6 +122,8 @@ public class Vehicule : MonoBehaviour
     {
         Tile nextTile = GetNextTile();
 
+        RotateVehicule();
+
         if (nextTile != null)
         {
             float distanceBtwnTwoTiles = (nextTile.transform.position - currentTile.transform.position).magnitude;
@@ -135,10 +138,49 @@ public class Vehicule : MonoBehaviour
             
     }
 
+    public void RotateVehicule()
+    {
+        //rotate
+        switch (direction)
+        {
+            case MOVE_DIRECTION.UP:
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                break;
+
+            case MOVE_DIRECTION.RIGHT:
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                break;
+
+            case MOVE_DIRECTION.DOWN:
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 180));
+                break;
+
+            case MOVE_DIRECTION.LEFT:
+                this.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 90));
+                break;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.gameObject.layer);
+        if(collision.gameObject.layer == 6)
+        {
+            this.dirVector = Vector2.zero;
+            Debug.Log(collision.gameObject.ToString());
+
+            collision.gameObject.GetComponent<Wall>().Activate();
+            DestroyAnim();
+            
+        }
+
         canChange = true;
+    }
+
+    public void DestroyAnim()
+    {
+        Instantiate(explosion, this.transform.position, Quaternion.identity);
+        currentBoard.SpawnVehicule(this.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -10,7 +10,7 @@ public struct WallState
     public bool isVisible;
     public bool isDangerous;
 
-    public WallState(int _index, bool _isVisible = true, bool _isDangerous= true)
+    public WallState(int _index, bool _isVisible = true, bool _isDangerous = true)
     {
         index = _index;
         isVisible = _isVisible;
@@ -23,6 +23,9 @@ public class BoardSettings : ScriptableObject
 {
     public int mapWidth, mapHeight;
     public string mapName;
+
+    public int entranceIndex;
+    public int exitIndex;
 
     public List<WallState> horizontalDangerousWalls;
     public List<WallState> VerticalDangerousWalls;

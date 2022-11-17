@@ -12,23 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25011d79bd4ae4b41a75586601e67460, type: 3}
   m_Name: Map1
   m_EditorClassIdentifier: 
-  mapWidth: 10
-  mapHeight: 10
+  mapWidth: 7
+  mapHeight: 5
   mapName: MAP_1
   horizontalDangerousWalls:
   - index: 4
-    isVisible: 1
+    isVisible: 0
     isDangerous: 1
   - index: 8
-    isVisible: 1
+    isVisible: 0
     isDangerous: 1
   - index: 15
-    isVisible: 1
+    isVisible: 0
     isDangerous: 1
   - index: 18
-    isVisible: 1
+    isVisible: 0
     isDangerous: 1
   - index: 35
-    isVisible: 1
+    isVisible: 0
     isDangerous: 1
   VerticalDangerousWalls: []
