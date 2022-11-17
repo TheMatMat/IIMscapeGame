@@ -10,6 +10,7 @@ public class Board : MonoBehaviour
 
     [Header("Prefabs")]
     public Tile tilePrefab;
+    public GameObject exitTile;
     public Vehicule motoPrefab;
 
     [Header("Tiles and Walls")]
@@ -61,8 +62,8 @@ public class Board : MonoBehaviour
             {
                 Tile currentTile = tiles[index];
 
-                currentTile.posX = j;
-                currentTile.posY = i;
+                currentTile.posX = j + 1;
+                currentTile.posY = i + 1;
 
                 currentTile.gameObject.transform.position = tilePos + new Vector2(currentTile.GetWidth() / 2, -currentTile.GetHeight() / 2);
 
@@ -126,7 +127,10 @@ public class Board : MonoBehaviour
                 }
 
                 tilePos.x += tilePrefab.GetHeight();
-                
+
+                if (index == BS.exitIndex)
+                    Instantiate(exitTile, currentTile.transform.position, Quaternion.identity);
+
                 index++;
             }
             tilePos.x = originXTilePos * tilePrefab.GetWidth();

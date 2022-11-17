@@ -1,8 +1,10 @@
+using Cinemachine;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public enum MOVE_DIRECTION
 {
@@ -21,6 +23,8 @@ public class Vehicule : MonoBehaviour
     public Tile currentTile;
     public GameObject explosion;
 
+    public CinemachineVirtualCamera virtualCamera;
+
     [Header("Movement")]
     public bool isMoving = false;
     public bool canChange = true;
@@ -33,7 +37,7 @@ public class Vehicule : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        virtualCamera = GameObject.FindGameObjectWithTag("Vcam").GetComponent<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
@@ -100,12 +104,12 @@ public class Vehicule : MonoBehaviour
                 break;
 
             case MOVE_DIRECTION.RIGHT:
-                if (currentTile.posX < currentBoard.BS.mapWidth - 1)
+                if (currentTile.posX < currentBoard.BS.mapWidth)
                     return tiles[currentTile.TileIndex + 1];
                 break;
 
             case MOVE_DIRECTION.DOWN:
-                if(currentTile.posY < currentBoard.BS.mapHeight - 1)
+                if(currentTile.posY < currentBoard.BS.mapHeight)
                     return tiles[currentTile.TileIndex + currentBoard.BS.mapWidth];
                 break;
 
@@ -120,6 +124,9 @@ public class Vehicule : MonoBehaviour
 
     public void DoMove()
     {
+        if (currentTile.TileIndex == currentBoard.BS.exitIndex)
+            SceneManager.LoadScene("WinScene");
+
         Tile nextTile = GetNextTile();
 
         RotateVehicule();
@@ -132,7 +139,7 @@ public class Vehicule : MonoBehaviour
         }
         else
         {
-            Debug.Log("get out");
+            Debug.Log(currentTile.posX + " : " + currentTile.posY);
             getOut = true;
         }
             

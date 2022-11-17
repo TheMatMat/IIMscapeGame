@@ -15,20 +15,91 @@ MonoBehaviour:
   mapWidth: 7
   mapHeight: 5
   mapName: MAP_1
+  entranceIndex: 16
+  exitIndex: 12
   horizontalDangerousWalls:
+  - index: 0
+    isVisible: 0
+    isDangerous: 1
+  - index: 1
+    isVisible: 0
+    isDangerous: 1
+  - index: 2
+    isVisible: 0
+    isDangerous: 1
   - index: 4
+    isVisible: 0
+    isDangerous: 1
+  - index: 5
     isVisible: 0
     isDangerous: 1
   - index: 8
     isVisible: 0
     isDangerous: 1
-  - index: 15
+  - index: 9
+    isVisible: 0
+    isDangerous: 1
+  - index: 10
+    isVisible: 0
+    isDangerous: 1
+  - index: 11
+    isVisible: 0
+    isDangerous: 1
+  - index: 12
+    isVisible: 0
+    isDangerous: 1
+  - index: 13
+    isVisible: 0
+    isDangerous: 1
+  - index: 16
+    isVisible: 0
+    isDangerous: 1
+  - index: 17
+    isVisible: 0
+    isDangerous: 1
+  - index: 19
+    isVisible: 0
+    isDangerous: 1
+  - index: 20
+    isVisible: 0
+    isDangerous: 1
+  - index: 22
+    isVisible: 0
+    isDangerous: 1
+  - index: 23
+    isVisible: 0
+    isDangerous: 1
+  - index: 24
+    isVisible: 0
+    isDangerous: 1
+  - index: 25
+    isVisible: 0
+    isDangerous: 1
+  - index: 26
+    isVisible: 0
+    isDangerous: 1
+  VerticalDangerousWalls:
+  - index: 2
+    isVisible: 0
+    isDangerous: 1
+  - index: 9
+    isVisible: 0
+    isDangerous: 1
+  - index: 10
+    isVisible: 0
+    isDangerous: 1
+  - index: 12
+    isVisible: 0
+    isDangerous: 1
+  - index: 13
+    isVisible: 0
+    isDangerous: 1
+  - index: 16
     isVisible: 0
     isDangerous: 1
   - index: 18
     isVisible: 0
     isDangerous: 1
-  - index: 35
+  - index: 21
     isVisible: 0
     isDangerous: 1
-  VerticalDangerousWalls: []

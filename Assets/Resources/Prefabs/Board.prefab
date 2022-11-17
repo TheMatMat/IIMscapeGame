@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BS: {fileID: 0}
   tilePrefab: {fileID: 4316258913768374738, guid: 55580e716b2e4f44c820064baaaffc39, type: 3}
+  exitTile: {fileID: 2407512179366247915, guid: 45862af81529aba4596173d037a0a46e, type: 3}
   motoPrefab: {fileID: 3931703543654579330, guid: 238b74fbf07c1a74c9579d48d243a0a5, type: 3}
   tiles: []
   walls: []
