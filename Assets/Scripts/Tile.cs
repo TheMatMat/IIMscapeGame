@@ -21,6 +21,7 @@ public class Tile : MonoBehaviour
     public static int nbOfTile = 0;
     [SerializeField]
     private int tileIndex;
+    public int posX, posY;
     public int TileIndex { get { return tileIndex; } set { tileIndex = value; } }
 
     [Header("Components")]

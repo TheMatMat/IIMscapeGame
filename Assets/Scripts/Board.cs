@@ -10,6 +10,7 @@ public class Board : MonoBehaviour
 
     [Header("Prefabs")]
     public Tile tilePrefab;
+    public Vehicule motoPrefab;
 
     [Header("Tiles and Walls")]
     public List<Tile> tiles = new List<Tile>();
@@ -40,6 +41,8 @@ public class Board : MonoBehaviour
 
         PlaceTilesAndWalls();
         ActivateDangerousWalls();
+
+        SpawnVehicule();
     }
 
     public void PlaceTilesAndWalls()
@@ -57,6 +60,9 @@ public class Board : MonoBehaviour
             for(int j = 0; j < BS.mapWidth; j++)
             {
                 Tile currentTile = tiles[index];
+
+                currentTile.posX = j;
+                currentTile.posY = i;
 
                 currentTile.gameObject.transform.position = tilePos + new Vector2(currentTile.GetWidth() / 2, -currentTile.GetHeight() / 2);
 
@@ -142,5 +148,12 @@ public class Board : MonoBehaviour
             if (WS.index < verticalWalls.Count)
                 verticalWalls[WS.index].SetAndApplyChanges(WS.isVisible, WS.isDangerous);
         }
+    }
+
+    public void SpawnVehicule()
+    {
+        Vehicule vehicule = Instantiate(motoPrefab, tiles[22].transform.position, Quaternion.identity);
+        vehicule.currentBoard = this;
+        vehicule.currentTile = tiles[22];
     }
 }

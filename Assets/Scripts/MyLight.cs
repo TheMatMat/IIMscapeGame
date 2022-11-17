@@ -16,8 +16,6 @@ public class MyLight : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         waitTimeBeforeFade = Random.Range(1, 4);
-
-       
     }
 
     // Update is called once per frame
